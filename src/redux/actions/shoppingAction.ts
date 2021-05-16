@@ -37,7 +37,7 @@ export const onAvailability = (postCode: string) => {
 
         try {
 
-            const response = await axios.get<FoodAvailability>(`http://192.168.8.103:8000/`)
+            const response = await axios.get<FoodAvailability>(`http://192.168.8.104:8000/`)
 
  
             if(!response){
@@ -74,7 +74,7 @@ export const onSearchFoods = (postCode: string) => {
 
         try {
 
-            const response = await axios.get<[FoodModel]>(`http://192.168.8.103:8000/search`)
+            const response = await axios.get<[FoodModel]>(`http://192.168.8.104:8000/search`)
 
             
 

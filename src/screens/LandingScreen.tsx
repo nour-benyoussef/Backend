@@ -4,6 +4,7 @@ import * as Location from 'expo-location'
 import {connect} from 'react-redux'
 import { onUpdateLocation , UserState , ApplicationState} from '../redux'
 import { useNavigation } from '../utils'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 const screenWidth = Dimensions.get('screen').width
 
 interface LandingProps{
@@ -36,10 +37,8 @@ interface LandingProps{
             if(coords){
 
                 const {latitude, longitude} = coords;
-                console.log(coords);
                 let addressResponse: any = await Location.reverseGeocodeAsync({ latitude, longitude})
-                
-                for(let item of addressResponse){
+              for(let item of addressResponse){
                     setAddress(item)
                     onUpdateLocation(item)
                     let currentAddress = `${item.street},${item.city},${item.region},${item.country}`

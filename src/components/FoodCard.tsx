@@ -21,7 +21,8 @@ const FoodCard: React.FC<FoodCardProps> = ({item, onTap ,OnUpdateCart,unit}) => 
 
     return(
         <View style ={styles.container}>
-            <Image source= {{uri: `${item.images[0]}`}} style={{ width: 100, height:100, borderRadius:20,  backgroundColor: '#EAEAEA'}}/>
+            <Image source=  {{uri: `${item.images[0]}`}} style={{ width: 100, height:100, borderRadius:20,  backgroundColor: '#EAEAEA'}}/>
+          {console.log( `../images/${item.images[0]}`)}
             <TouchableOpacity onPress={() => onTap(item)} style={{display:'flex' ,flex:1, flexDirection: 'row'}}>
                 <View style={{ display:'flex' , flex:7,padding:10 }}>
                     <Text>Food : {item.name}</Text>

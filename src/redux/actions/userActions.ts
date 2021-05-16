@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {LocationGeocodedAddress} from 'expo-location'
-import { Dispatch } from 'react'
+import { Dispatch, useState } from 'react'
 import { BASE_URL} from '../../utils'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { FoodModel, OrderModel, UserModel } from '../models'
@@ -46,9 +46,7 @@ export interface UserLogoutAction{
 
 
 export type UserAction = UpdateLocationAction | UserErroeAction | UpdateCartAction | UserLoginAction | CreateOrderAction | ViewOrdersAction|UserLogoutAction; 
-
 export const onUpdateLocation = (location:LocationGeocodedAddress) => {
-
     return async ( dispatch: Dispatch<UserAction>) => {
 
         try{
@@ -97,12 +95,13 @@ export const OnUserLogin = (email: string , password: string) => {
     return async ( dispatch: Dispatch<UserAction>) => {
 
         try{
-            const response = await axios.post<UserModel>(`http://192.168.8.103:8000/customer/login`,{
+            const response = await axios.post<UserModel>(`http://192.168.8.104:8000/customer/login`,{
                 email,
-                password
+                password,
+                
             })
+       
 
- 
             if(!response){
                 dispatch({
                     type: 'ON_USER_ERROR',
@@ -116,7 +115,6 @@ export const OnUserLogin = (email: string , password: string) => {
                     payload: response.data
                 })
             }
-            Alert.alert("Welcome", "Your new account is ready")
 
 
         }catch(error){
@@ -136,12 +134,17 @@ export const OnUserLogin = (email: string , password: string) => {
 export const OnUserSignup = ( email: string ,phone: string, password: string) => {
 
     return async ( dispatch: Dispatch<UserAction>) => {
-
+        const coords=await AsyncStorage.getItem('user_location');
+        const loc=JSON.parse(coords);
+        const address=loc.name +" "+ loc.country+" "+loc.region;
+        
         try{
-            const response = await axios.post<UserModel>(`http://192.168.8.103:8000/customer/signup/`,{
+            const response = await axios.post<UserModel>(`http://192.168.8.104:8000/customer/signup/`,{
                 email,
                 phone,
-                password
+                password,
+              address
+                
             })
           
          
@@ -179,10 +182,10 @@ export const onVerifyOTP = (otp: string ,user: UserModel) => {
 
         try{
             axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
-            const response = await axios.patch<UserModel>(`http://192.168.8.103:8000/customer/verify/`,{
+            const response = await axios.patch<UserModel>(`http://192.168.8.104:8000/customer/verify/`,{
                 otp
             })
-         
+           console.log(response)
             if(!response){
                 dispatch({
                     type: 'ON_USER_ERROR',
@@ -214,8 +217,8 @@ export const onOTPrequest = (user: UserModel) => {
 
         try{
             axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
-            const response = await axios.get<UserModel>(`http://192.168.8.103:8000/customer/otp/`)
-         
+            const response = await axios.get<UserModel>(`http://192.168.8.104:8000/customer/otp/`)
+            console.log(response)
             if(!response){
                 dispatch({
                     type: 'ON_USER_ERROR',
@@ -255,7 +258,7 @@ export const onCreateOrder = (cartItems:[FoodModel],user:UserModel) => {
 
         try{
             axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`
-            const response = await axios.post<OrderModel>(`${BASE_URL}user/create-order`, {
+            const response = await axios.post<OrderModel>(`http://192.168.8.104:8000/customer/create-order`, {
                 cart: cart
             })
 
@@ -300,9 +303,9 @@ export const onGetOrders = (user:UserModel) => {
 
         try{
             axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`
-            const response = await axios.get<[OrderModel]>(`${BASE_URL}user/order`)
+            const response = await axios.get<[OrderModel]>(`http://192.168.8.104:8000/customer/orders`)
             
-
+            
  
             if(!response){
                 dispatch({
@@ -338,7 +341,7 @@ export const onCancelOrder = (order:OrderModel,user:UserModel) => {
 
         try{
             axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`
-            const response = await axios.delete<[OrderModel]>(`${BASE_URL}user/order/${order._id}`)
+            const response = await axios.delete<[OrderModel]>(`http://192.168.8.104:8000/customer/order/${order._id}`)
             
 
  
