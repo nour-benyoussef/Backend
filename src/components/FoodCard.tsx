@@ -17,19 +17,17 @@ const FoodCard: React.FC<FoodCardProps> = ({item, onTap ,OnUpdateCart,unit}) => 
         item.unit = unit;
         OnUpdateCart(item)
     }
- 
-
     return(
         <View style ={styles.container}>
-            <Image source=  {{uri: `${item.images[0]}`}} style={{ width: 100, height:100, borderRadius:20,  backgroundColor: '#EAEAEA'}}/>
-          {console.log( `../images/${item.images[0]}`)}
+          
+            <Image  source={{ uri:`${item.images[0]}`}} style={{ width: 100, height:100, borderRadius:20,  backgroundColor: '#EAEAEA'}}/>
             <TouchableOpacity onPress={() => onTap(item)} style={{display:'flex' ,flex:1, flexDirection: 'row'}}>
                 <View style={{ display:'flex' , flex:7,padding:10 }}>
                     <Text>Food : {item.name}</Text>
                     <Text>Category : {item.category}</Text>
                 </View>
                 <View style={{ display:'flex' , flex:4, padding:10 , justifyContent:'space-around' , alignItems: 'center' , marginRight:5}}>
-                    <Text style={{ fontSize:18, fontWeight:'600', color:'#7C7C7C'}}> {item.price} £ </Text>
+                    <Text style={{ fontSize:18, fontWeight:'600', color:'#7C7C7C'}}> {item.price} DT </Text>
                    
                    {unit !== undefined ?
                     <Text style={{fontSize:15, fontWeight:'600'}}> Quantity : {unit}</Text>

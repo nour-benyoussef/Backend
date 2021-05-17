@@ -5,7 +5,7 @@ import { FoodModel, Restaurant } from '../redux'
 const screenWidth = Dimensions.get('screen').width;
 
 interface RestaurantProps{ 
-    item: Restaurant | FoodModel
+    item: Restaurant;
     onTap: Function;
  }
 
@@ -14,8 +14,9 @@ interface RestaurantProps{
     return (
         <TouchableOpacity style={styles.container} onPress={() => onTap(item)}>
             <Image style={{ width: screenWidth - 20, height: 220, borderRadius: 20, backgroundColor: '#EAEAEA' }} 
-            source={{ uri: `${item.images[0]}`}}
+            source={{ uri:`${item.coverImages[0]}`}}
             />
+           
         </TouchableOpacity>
     
     )}

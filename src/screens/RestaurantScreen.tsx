@@ -33,7 +33,7 @@ const _RestaurantScreen: React.FC<RestaurantProps> = (props) => {
                 <Text style={{ fontSize:22 , fontWeight: '600' , marginLeft:20}}> {restaurant.name}</Text>
             </View>
             <View style={styles.body}>
-             <ImageBackground source={{ uri: `${restaurant.images[0]}`}}
+             <ImageBackground source={{ uri: `${restaurant.coverImages[0]}`}}
                 style={{ width: Dimensions.get('screen').width, height: 300, justifyContent: 'flex-end', }}>
                 <View style={{ height: 120, backgroundColor: 'rgba(0,0,0,0.6)', padding: 10}}>
 

@@ -20,19 +20,23 @@ export interface FoodModel{
  
 
 export interface Restaurant{
-    _id: string;
-    name: string;
-    foodType: string;
+    name:string;
+    ownerName: string;
+    foodType: [string];
+    pincode: string;
     address: string;
     phone: string;
-    images: string;
-    foods: [FoodModel];
+    email: string;
+    password: string;
+    salt: string;
+    serviceAvailable:boolean;
+    coverImages: [string],
+    rating:number; 
+    foods: any
 }
 
 export interface FoodAvailability{
-    categories: [Category];
     restaurants: [Restaurant];
-    foods: [FoodModel]
 }
  
 

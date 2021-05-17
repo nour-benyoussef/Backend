@@ -19,12 +19,13 @@ export const _HomeScreen: React.FC<HomeProps> = (props) => {
     
 
     const { navigate } = useNavigation()
+    
 
 
     const { location } = props.userReducer;
     const { availability } = props.shoppingReducer;
+    const   restaurants  = availability
 
-    const { categories, foods, restaurants } = availability
 
  
     useEffect(() => {
@@ -59,34 +60,26 @@ export const _HomeScreen: React.FC<HomeProps> = (props) => {
             
             <View style={styles.body}>
                 <ScrollView>
-                    <FlatList 
-                     horizontal
-                     showsHorizontalScrollIndicator={false}
-                     data={categories}
-                     renderItem ={({ item }) =>  <CategoryCard item={item} onTap={() => {} } /> } 
-                     keyExtractor={(item) => `${item.id}`}
-                    />
                     <View>
-                        <Text style={{fontSize: 25, fontWeight: '700', color: '#A74479', marginLeft: 50 }} > Top Restaurants : </Text>
+                    <Text style={{fontSize: 25, fontWeight: '700', color: '#A74479', marginLeft: 50 }} > Top Restaurants : </Text>
                     </View>
                     <FlatList 
                      horizontal
                      showsHorizontalScrollIndicator={false}
                      data={restaurants}
-                     renderItem ={({ item }) =>  <RestaurantCard item={item} onTap={onTapRestaurant} /> } 
+                     renderItem ={({item}) =>  <RestaurantCard item={item} onTap={onTapRestaurant} /> } 
                      keyExtractor={(item) => `${item._id}`}
-                    />
 
+                    />
                     <View>
                         <Text style={{fontSize: 25, fontWeight: '700', color: '#A74479', marginLeft: 50 }} > Favorite Foods : </Text>
                     </View>
-                    <FlatList 
-                     horizontal
-                     showsHorizontalScrollIndicator={false}
-                     data={foods}
-                     renderItem ={({ item }) =>  <RestaurantCard item={item} onTap={onTapFood} /> } 
-                     keyExtractor={(item) => `${item._id}`}
-                    />
+ 
+
+
+                  
+
+ 
                     
 
                 </ScrollView>
@@ -123,6 +116,7 @@ const mapToStateProps = (state: ApplicationState) => ({
     shoppingReducer: state.shoppingReducer
 })
 
-const HomeScreen = connect(mapToStateProps, { onAvailability,  onSearchFoods })(_HomeScreen)
+const HomeScreen = connect(mapToStateProps, { onAvailability, onSearchFoods })(_HomeScreen)
 
 export { HomeScreen }
+

@@ -33,7 +33,7 @@ const _FoodDetailScreen: React.FC<FoodDetailProps> = (props) => {
             </View>
 
             <View style={styles.body}>
-                    <ImageBackground source={{ uri: `${food.images[0]}`}}
+                    <ImageBackground source={{ uri: `${food.images}`}}
                         style={{ width: Dimensions.get('screen').width, height: 300, justifyContent: 'flex-end', }}>
                             <View style={{ height: 120, backgroundColor: 'rgba(0,0,0,0.6)', padding: 20}}>
 
