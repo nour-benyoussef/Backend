@@ -34,7 +34,9 @@ const UserReducer = (state: UserState = initialState, action: UserAction) =>{
                 if(food._id == action.payload._id){
                    food.unit = action.payload.unit;
                 }
+
                 return food
+
             })
 
             return {

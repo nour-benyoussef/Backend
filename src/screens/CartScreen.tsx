@@ -51,7 +51,7 @@ const _CartScreen: React.FC<CartScreenProps> = (props) => {
                   navigate('LoginPage')
        
               }else{
-                 
+
                   popupRef.current?.open();
        
               }
@@ -64,8 +64,7 @@ const _CartScreen: React.FC<CartScreenProps> = (props) => {
       
           const onTapPlaceOrder = ()=>{
               props.onCreateOrder(Cart,user);
-              popupRef.current?.close();
-              Alert.alert("Order Valid", "Thank you for your visit");
+              popupRef.current.close();
           }
       
 
@@ -99,7 +98,7 @@ const _CartScreen: React.FC<CartScreenProps> = (props) => {
                         
                         <View style={styles.paymentView}>
                             <Text style={{fontSize: 20}}>Payables Amount</Text>
-                            <Text style={{fontSize: 20 , fontWeight:'600'}}>{totalAmount.toFixed(2)} £</Text>
+                            <Text style={{fontSize: 20 , fontWeight:'600'}}>{totalAmount.toFixed(2)} DT</Text>
                         </View>
 
                         <View style ={{ display:'flex', height:100, padding: 20 , flexDirection: 'row'}}>
@@ -180,7 +179,7 @@ const _CartScreen: React.FC<CartScreenProps> = (props) => {
                             <View style={styles.footer}>
                                 <View style={styles.amountDetails}>
                                     <Text style={{ fontSize: 20}}>Total</Text>
-                                    <Text style={{ fontSize: 20}}>{totalAmount}</Text>
+                                    <Text style={{ fontSize: 20}}>{totalAmount} DT</Text>
                                 </View>
                                 <ButtonWithTitle title={"Order Now"} onTap={onValidateorder} height={50} width={200}/>
                             </View>

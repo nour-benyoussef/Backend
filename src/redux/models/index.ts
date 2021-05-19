@@ -9,12 +9,15 @@ export interface Category{
 
 export interface FoodModel{
     _id: string;
-    name: string;
-    description: string;
-    category: string;
-    price: number;
-    readyTime: number;
-    images: [string];
+    vandorId: string;
+    name:string;
+    description:string;
+    category:string;
+    foodType:string;
+    readyTime:number;
+    price:number;
+    rating: number;
+    images:string
     unit: number;
 }
  
@@ -30,7 +33,7 @@ export interface Restaurant{
     password: string;
     salt: string;
     serviceAvailable:boolean;
-    coverImages: [string],
+    coverImages: string,
     rating:number; 
     foods: any
 }
@@ -59,7 +62,7 @@ export interface UserState{
 }
 
 export interface ShoppingState{
-    availability: FoodAvailability,
+    availability: [Restaurant],
     availableFoods: [FoodModel]
 
 }
@@ -73,10 +76,10 @@ export interface CartModel{
 export interface OrderModel{
     _id: string;
     orderID: string;
+    vandorID:string
     items:[CartModel];
     totalAmount: number;
     orderDate: number;
     paidThrough:string;
-    paymentResponse: string;
     orderStatus: string;
 }

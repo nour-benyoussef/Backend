@@ -30,25 +30,28 @@ const _RestaurantScreen: React.FC<RestaurantProps> = (props) => {
         <View style ={styles.container}>
             <View style= {styles.navigation}>
                 <ButtonWithIcon icon={require('../images/back_arrow.png')} onTap={() => goBack()} width={42} height={42}/>
-                <Text style={{ fontSize:22 , fontWeight: '600' , marginLeft:20}}> {restaurant.name}</Text>
+                <Text style={{ fontSize:28 , fontWeight: '600' , marginLeft:15}}> {restaurant.name}</Text>
             </View>
             <View style={styles.body}>
-             <ImageBackground source={{ uri: `${restaurant.coverImages[0]}`}}
-                style={{ width: Dimensions.get('screen').width, height: 300, justifyContent: 'flex-end', }}>
+             <ImageBackground source={{uri:`${restaurant.coverImages}`}}
+                style={{ width: Dimensions.get('screen').width, height: 300, justifyContent: 'flex-end'}}>
                 <View style={{ height: 120, backgroundColor: 'rgba(0,0,0,0.6)', padding: 10}}>
 
                 <Text style={{ color: '#FFF', fontSize: 30, fontWeight: '700' }} > {restaurant.name}</Text>
-                <Text style={{ color: '#FFF', fontSize: 25, fontWeight: '500' }} > {restaurant.address} { restaurant.phone}</Text>
-
+                <Text style={{ color: '#FFF', fontSize: 25, fontWeight: '500' }} > Address : {restaurant.address}</Text>
+                <Text style={{ color: '#FFF', fontSize: 25, fontWeight: '500' }} > Tel :{restaurant.phone}</Text>
+                
                 </View>
 
             </ImageBackground>
             <FlatList 
-                showsVerticalScrollIndicator={false}
-                data={restaurant.foods}
-                renderItem={({ item}) => <FoodCard item={checkExistence(item,Cart)} onTap={onTapFood} OnUpdateCart ={props.onUpdateCart}/>}
-                keyExtractor={(item) => `${item._id}`}
-            />
+                    showsVerticalScrollIndicator={false}
+                    data={ 
+                        restaurant.foods
+                    }
+                    renderItem={({item}) => <FoodCard onTap={onTapFood} item={checkExistence(item, Cart)} OnUpdateCart ={props.onUpdateCart} /> }
+                    keyExtractor={(item) => `${item._id}`}
+                />
 
             </View>
 

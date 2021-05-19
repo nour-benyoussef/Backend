@@ -67,7 +67,7 @@ const _AccountScreen: React.FC<AccountScreenProps> = (props) => {
                             <Image source={require('../images/avatar.png')} style={{width:150, height:150, marginRight:20}}/>
                             
                             <View>
-                                <Text style={{fontSize:22, fontWeight:'700'}}>WELCOME</Text>
+                                <Text style={{fontSize:22, fontWeight:'700'}}>Profile</Text>
                                 <Text style={{fontSize:12}}>{user.email}</Text>
                                 <Text style={{fontSize:12}}>{user.contactNumber}</Text>
 

@@ -1,9 +1,9 @@
 import { ShoppingAction } from '../actions'
-import { FoodAvailability, FoodModel, ShoppingState } from '../models'
+import { FoodAvailability, FoodModel, Restaurant, ShoppingState } from '../models'
 
 
 const initialState = {
-    availability: {} as FoodAvailability,
+    availability: {} as [Restaurant],
     availableFoods: {} as [FoodModel]
 }
 

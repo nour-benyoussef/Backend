@@ -37,9 +37,9 @@ const OrderCard: React.FC<OrderCardProps> = ({item, onTap}) => {
                 <View style={{display:'flex', flex:8,padding:5, marginTop:5, paddingLeft:20, justifyContent:'space-around' , alignItems:'flex-start' }}>
                     <Text style={{fontSize: 22 , fontWeight:'500'}}> Order ID: {item.orderID}</Text>
                     <Text style={{fontSize: 16 , fontWeight:'600', color:'#7C7C7C'}}> Date : {moment(item.orderDate).format('Do MMM YY, h:mm a')}</Text>
-                    <Text style={{fontSize: 20 , fontWeight:'500', color:'#823688'}}> Price : {item.totalAmount}£</Text>
+                    <Text style={{fontSize: 20 , fontWeight:'500', color:'#823688'}}> Price : {item.totalAmount} DT</Text>
                 </View>
-                {orderStatus()}
+        
 
             </View>
         </TouchableOpacity>

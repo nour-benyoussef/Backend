@@ -27,7 +27,7 @@ const FoodCardInfo: React.FC<FoodCardInfoProps> = ({item, onTap ,OnUpdateCart}) 
                     <Text style={{color:'black',fontWeight:'600'}}>Category : {item.category}</Text>
                 </View>
                 <View style={{ display:'flex' , flex:4, padding:10 , justifyContent:'space-around' , alignItems: 'center' , marginRight:5}}>
-                    <Text style={{ fontSize:18, fontWeight:'600', color:'#7C7C7C'}}> {item.price} £ </Text>
+                    <Text style={{ fontSize:18, fontWeight:'600', color:'#7C7C7C'}}> {item.price} DT </Text>
                     <ButtonAddRemove onAdd={() => {
                            let unit = isNaN(item.unit) ? 0 : item.unit;
                            didUpdateCart( unit + 1);

@@ -95,7 +95,7 @@ export const OnUserLogin = (email: string , password: string) => {
     return async ( dispatch: Dispatch<UserAction>) => {
 
         try{
-            const response = await axios.post<UserModel>(`http://192.168.8.101:8000/customer/login`,{
+            const response = await axios.post<UserModel>(`http://192.168.8.103:8000/customer/login`,{
                 email,
                 password,
                 
@@ -139,12 +139,11 @@ export const OnUserSignup = ( email: string ,phone: string, password: string) =>
         const address=loc.name +" "+ loc.country+" "+loc.region;
         
         try{
-            const response = await axios.post<UserModel>(`http://192.168.8.101:8000/customer/signup/`,{
+            const response = await axios.post<UserModel>(`http://192.168.8.103:8000/customer/signup`,{
                 email,
                 phone,
                 password,
-              address
-                
+                address
             })
           
          
@@ -170,6 +169,7 @@ export const OnUserSignup = ( email: string ,phone: string, password: string) =>
             })
             Alert.alert("Sign Up Failed","The email address, Phone number or password you entered is incorrect, Please Try again ")
 
+           
 
         }
     }
@@ -182,10 +182,9 @@ export const onVerifyOTP = (otp: string ,user: UserModel) => {
 
         try{
             axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
-            const response = await axios.patch<UserModel>(`http://192.168.8.101:8000/customer/verify/`,{
+            const response = await axios.patch<UserModel>(`http://192.168.8.103:8000/customer/verify/`,{
                 otp
             })
-           console.log(response)
             if(!response){
                 dispatch({
                     type: 'ON_USER_ERROR',
@@ -217,8 +216,7 @@ export const onOTPrequest = (user: UserModel) => {
 
         try{
             axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
-            const response = await axios.get<UserModel>(`http://192.168.8.101:8000/customer/otp/`)
-            console.log(response)
+            const response = await axios.get<UserModel>(`http://192.168.8.103:8000/customer/otp/`)
             if(!response){
                 dispatch({
                     type: 'ON_USER_ERROR',
@@ -250,19 +248,22 @@ export const onOTPrequest = (user: UserModel) => {
 
 export const onCreateOrder = (cartItems:[FoodModel],user:UserModel) => {
 
-    let cart = new Array();
-    cartItems.map(item => {
-        cart.push({_id: item._id, unit: item.unit});
-    })
+
+
     return async ( dispatch: Dispatch<UserAction>) => {
-
+        let cart = new Array();
+        cartItems.map(item => {
+            cart.push({_id: item._id, unit: item.unit});
+        })
         try{
-            axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`
-            const response = await axios.post<OrderModel>(`http://192.168.8.101:8000/customer/create-order`, {
-                cart: cart
-            })
+            console.log(cart)
 
- 
+            axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
+            const response = await axios.post<OrderModel>(`http://192.168.8.103:8000/customer/createorder`, {
+              cart  })
+
+
+
             if(!response){
                 dispatch({
                     type: 'ON_USER_ERROR',
@@ -273,6 +274,9 @@ export const onCreateOrder = (cartItems:[FoodModel],user:UserModel) => {
                     type: 'ON_CREATE_ORDER',
                     payload: response.data
                 })
+            Alert.alert("Order Valid", "Thank you for your visit");
+
+
             }
 
 
@@ -302,9 +306,9 @@ export const onGetOrders = (user:UserModel) => {
     return async ( dispatch: Dispatch<UserAction>) => {
 
         try{
-            axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`
-            const response = await axios.get<[OrderModel]>(`http://192.168.8.101:8000/customer/orders`)
-            
+            axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
+            const response = await axios.get<[OrderModel]>(`http://192.168.8.103:8000/customer/orders`)
+  
             
  
             if(!response){
@@ -341,7 +345,7 @@ export const onCancelOrder = (order:OrderModel,user:UserModel) => {
 
         try{
             axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`
-            const response = await axios.delete<[OrderModel]>(`http://192.168.8.101:8000/customer/order/${order._id}`)
+            const response = await axios.delete<[OrderModel]>(`http://192.168.8.103:8000/customer/order/${order._id}`)
             
 
  

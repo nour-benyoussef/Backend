@@ -7,4 +7,6 @@ export * from './FoodCard'
 export * from './FoodCardInfo'
 export * from './ButtonWithTitle'
 export * from './TextField'
+export * from './RestaurantsCard1'
+
 
