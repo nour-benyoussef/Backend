@@ -24,7 +24,6 @@ const FoodCardInfo: React.FC<FoodCardInfoProps> = ({item, onTap ,OnUpdateCart}) 
             <View style={{display:'flex' ,flex:1, flexDirection: 'row' ,justifyContent:'space-around'}}>
                 <View style={{ display:'flex' , flex:7,paddingTop:35, padding:10 }}>
                      <Text style={{fontSize:18, fontWeight:'700'}}> {item.name}</Text>
-                    <Text style={{color:'black',fontWeight:'600'}}>Category : {item.category}</Text>
                 </View>
                 <View style={{ display:'flex' , flex:4, padding:10 , justifyContent:'space-around' , alignItems: 'center' , marginRight:5}}>
                     <Text style={{ fontSize:18, fontWeight:'600', color:'#7C7C7C'}}> {item.price} DT </Text>

@@ -24,7 +24,6 @@ const FoodCard: React.FC<FoodCardProps> = ({item, onTap ,OnUpdateCart,unit}) => 
             <TouchableOpacity onPress={() => onTap(item)} style={{display:'flex' ,flex:1, flexDirection: 'row'}}>
                 <View style={{ display:'flex' , flex:7,padding:10 }}>
                     <Text>Food : {item.name}</Text>
-                    <Text>Category : {item.category}</Text>
                     
                     
                 </View>
